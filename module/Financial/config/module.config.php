@@ -21,7 +21,6 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'Financial\\V1\\Rest\\Expenses\\ExpensesResource' => 'Financial\\V1\\Rest\\Expenses\\ExpensesResourceFactory',
-      //      'Financial\\V1\\Rest\\Expenses\\ExpensesMapper' => 'Financial\\V1\\Rest\\Expenses\\ExpensesMapper',
         ),
     ),
     'zf-rest' => array(
@@ -36,6 +35,7 @@ return array(
             ),
             'collection_http_methods' => array(
                 0 => 'GET',
+                1 => 'POST',
             ),
             'collection_query_whitelist' => array(),
             'page_size' => 25,

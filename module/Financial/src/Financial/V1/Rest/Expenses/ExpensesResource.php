@@ -21,7 +21,8 @@ class ExpensesResource extends AbstractResourceListener
      */
     public function create($data)
     {
-        return new ApiProblem(405, 'The POST method has not been defined');
+        return $this->mapper->create($data);
+        //return new ApiProblem(405, 'The POST method has not been defined');
     }
 
     /**

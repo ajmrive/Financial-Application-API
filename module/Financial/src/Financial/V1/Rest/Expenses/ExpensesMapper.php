@@ -27,12 +27,26 @@ class ExpensesMapper {
     $this->adapter = $adapter;
   }
 
+  public function create($data) {
+
+    if (!isset($data->description) || !isset($data->amount)) {
+      return null;
+    }
+
+    $description = $data->description;
+    $amount = $data->amount;
+
+    $sql = "INSERT INTO expenses (description,amount) VALUES (:description,:amount)";
+    $q = $this->adapter->query($sql,array(
+          ':description' => $description,
+          ':amount' => $amount));
+  }
+
   public function fetchAll() {
     $select = new Select('expenses');
     $paginatorAdapter = new DbSelect($select, $this->adapter);
     $collection = new ExpensesCollection($paginatorAdapter);
     return $collection;
-    return array();
   }
 
   public function fetchOne($albumId) {
@@ -42,7 +56,7 @@ class ExpensesMapper {
     if (!$data) {
       return false;
     }
-    
+
     $entity = new ExpensesEntity();
     $entity->exchangeArray($data[0]);
     return $entity;
