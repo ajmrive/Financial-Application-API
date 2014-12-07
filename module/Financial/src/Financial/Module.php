@@ -20,4 +20,15 @@ class Module implements ApigilityProviderInterface
             ),
         );
     }
+    
+    public function getServiceConfig() {
+    return array(
+      'factories' => array(
+        'Financial\V1\Rest\Expenses\ExpensesMapper' => function ($sm) {
+      $adapter = $sm->get('Zend\Db\Adapter\Adapter');
+      return new \Financial\V1\Rest\Expenses\ExpensesMapper($adapter);
+    },
+      ),
+    );
+  }
 }

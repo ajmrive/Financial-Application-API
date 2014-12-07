@@ -21,6 +21,7 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'Financial\\V1\\Rest\\Expenses\\ExpensesResource' => 'Financial\\V1\\Rest\\Expenses\\ExpensesResourceFactory',
+      //      'Financial\\V1\\Rest\\Expenses\\ExpensesMapper' => 'Financial\\V1\\Rest\\Expenses\\ExpensesMapper',
         ),
     ),
     'zf-rest' => array(

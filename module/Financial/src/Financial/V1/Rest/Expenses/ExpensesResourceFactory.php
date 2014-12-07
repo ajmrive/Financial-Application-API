@@ -5,6 +5,7 @@ class ExpensesResourceFactory
 {
     public function __invoke($services)
     {
-        return new ExpensesResource();
+        $mapper = $services->get('Financial\V1\Rest\Expenses\ExpensesMapper');
+        return new ExpensesResource($mapper);
     }
 }

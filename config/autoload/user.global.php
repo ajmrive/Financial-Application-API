@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
  * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
  */
-
 /**
  * Global Configuration Override
  *
@@ -15,7 +15,22 @@
  * control, so do not include passwords or other sensitive information in this
  * file.
  */
-
 return array(
-    // ...
+  'db' => array(
+    //'driver' => 'Pdo_Sqlite',
+    //'database' => 'data/financial_miniapp.db',
+    'username' => 'root',
+    'password' => '',
+    'driver' => 'Pdo',
+    'dsn' => 'mysql:dbname=financial_miniapp;host=localhost',
+    'driver_options' => array(
+      PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'utf8\''
+    ),
+  ),
+  'service_manager' => array(
+    'factories' => array(
+      'Zend\Db\Adapter\Adapter'
+      => 'Zend\Db\Adapter\AdapterServiceFactory',
+    ),
+  ),
 );
