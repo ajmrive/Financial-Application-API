@@ -36,22 +36,22 @@ class ExpensesMapper {
     $description = $data->description;
     $amount = $data->amount;
 
-    $sql = "INSERT INTO expenses (description,amount) VALUES (:description,:amount)";
+    $sql = "INSERT INTO ".self::dbName." (description,amount) VALUES (:description,:amount)";
     $q = $this->adapter->query($sql,array(
           ':description' => $description,
           ':amount' => $amount));
   }
 
   public function fetchAll() {
-    $select = new Select('expenses');
+    $select = new Select(self::dbName);
     $paginatorAdapter = new DbSelect($select, $this->adapter);
     $collection = new ExpensesCollection($paginatorAdapter);
     return $collection;
   }
 
-  public function fetchOne($albumId) {
-    $sql = 'SELECT * FROM expenses WHERE id = ?';
-    $resultset = $this->adapter->query($sql, array($albumId));
+  public function fetchOne($expenseId) {
+    $sql = 'SELECT * FROM '.self::dbName.' WHERE id = ?';
+    $resultset = $this->adapter->query($sql, array($expenseId));
     $data = $resultset->toArray();
     if (!$data) {
       return false;
