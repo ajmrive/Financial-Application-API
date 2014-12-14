@@ -29,10 +29,11 @@ class ExpensesMapper {
 
   public function create($data) {
 
-    if (!isset($data->description) || !isset($data->amount)) {
-      return null;
+    //if (!isset($data->description) || !isset($data->amount)) {
+    if (!isset($data->description) || !isset($data->amount) || empty($data->description) || !is_numeric($data->amount)) {
+      return http_response_code(400);
     }
-
+ 
     $description = $data->description;
     $amount = $data->amount;
 
